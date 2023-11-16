@@ -1,11 +1,11 @@
 ---
-title: "Hello World"
+title: "Worcester Poll 2024"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
 
 ```{r}
 plot(cars)
@@ -18,10 +18,12 @@ When you save the notebook, an HTML file containing the code and output will be 
 The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
 # You can delete everything above this.
+
 ## Let's make a new section here with a level 1 header labeled something like "Worcester Election Data"
-- use rmarkdown to create the section header 
-- use rmarkdown to make a link that indicates where we got the data: https://gisdata.worcesterma.gov/
-- use plain text to write that this section will show us where Worcester precincts and voting locations are.
+
+-   use rmarkdown to create the section header
+-   use rmarkdown to make a link that indicates where we got the data: <https://gisdata.worcesterma.gov/>
+-   use plain text to write that this section will show us where Worcester precincts and voting locations are.
 
 ```{r}
 library(sf) #here we tell R that we need the Simple Features library (sf)
@@ -46,10 +48,13 @@ tm_shape(precs) +
 
 #what about some labels?
 tm_shape(precs) + 
-  tm_fill() +
-  tm_borders() +  
-  tm_text()
+  tm_fill(col="violetred2") +
+  tm_borders(col="blue") +  
+  tm_text("Ward_Precinct",size="AREA",col="orange")
+```
 
+
+```{r}
 #that didn't work? how do we learn more about our tm_* (tmap) functions?
 ?tmap
 
@@ -58,5 +63,17 @@ woo_map1 = tm_shape(precs)+tm_fill()+tm_borders()
 
 ```
 
-# Polling Stations 
+# Polling Stations
+
 Your task is to make a new section that imports the voting polling stations and places them on a map.
+
+```{r}
+polls = read_sf("data/Polling_Locations.geojson")
+```
+
+# Voting Polling Stations of Worcester
+
+[Actual Data](https://gisdata.worcesterma.gov/)
+
+This link shows where this data had originated from, a reliable source coming directly from the Worcester, MA governmental administration.
+
